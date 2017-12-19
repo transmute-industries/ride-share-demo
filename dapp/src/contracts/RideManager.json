@@ -1,0 +1,840 @@
+{
+  "contractName": "RideManager",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "creator",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_eventType",
+          "type": "bytes32"
+        },
+        {
+          "name": "_keyType",
+          "type": "bytes1"
+        },
+        {
+          "name": "_valueType",
+          "type": "bytes1"
+        },
+        {
+          "name": "_key",
+          "type": "bytes32"
+        },
+        {
+          "name": "_value",
+          "type": "bytes32"
+        }
+      ],
+      "name": "writeEvent",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "eventCount",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "destroy",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_eventId",
+          "type": "uint256"
+        }
+      ],
+      "name": "readEvent",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "name": "",
+          "type": "address"
+        },
+        {
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "name": "",
+          "type": "bytes1"
+        },
+        {
+          "name": "",
+          "type": "bytes1"
+        },
+        {
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_recipient",
+          "type": "address"
+        }
+      ],
+      "name": "destroyAndSend",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "constructor"
+    },
+    {
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "Id",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "TxOrigin",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "Created",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "EventType",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "KeyType",
+          "type": "bytes1"
+        },
+        {
+          "indexed": false,
+          "name": "ValueType",
+          "type": "bytes1"
+        },
+        {
+          "indexed": false,
+          "name": "Key",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "Value",
+          "type": "bytes32"
+        }
+      ],
+      "name": "EsEvent",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    }
+  ],
+  "bytecode": "0x6060604052336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555032600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506108ff806100946000396000f30060606040526004361061008e576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806302d05d3f1461009357806335628b38146100e857806371be2e4a1461019357806383197ef0146101bc5780638da5cb5b146101d1578063e1ba30a914610226578063f2fde38b1461035a578063f5074f4114610393575b600080fd5b341561009e57600080fd5b6100a66103cc565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34156100f357600080fd5b61017d6004808035600019169060200190919080357effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19169060200190919080357effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff191690602001909190803560001916906020019091908035600019169060200190919050506103f2565b6040518082815260200191505060405180910390f35b341561019e57600080fd5b6101a6610556565b6040518082815260200191505060405180910390f35b34156101c757600080fd5b6101cf610566565b005b34156101dc57600080fd5b6101e46105fb565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561023157600080fd5b6102476004808035906020019091905050610620565b604051808981526020018873ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018781526020018660001916600019168152602001857effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19168152602001847effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19168152602001836000191660001916815260200182600019166000191681526020019850505050505050505060405180910390f35b341561036557600080fd5b610391600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190505061070a565b005b341561039e57600080fd5b6103ca600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190505061085f565b005b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600073__EventStoreLib_________________________633bb64203600188888888886000604051602001526040518763ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808781526020018660001916600019168152602001857effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19168152602001847effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff1916815260200183600019166000191681526020018260001916600019168152602001965050505050505060206040518083038186803b151561053057600080fd5b6102c65a03f4151561054157600080fd5b50505060405180519050905095945050505050565b6000600160000180549050905090565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156105c157600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60008060008060008060008073__EventStoreLib_________________________63a057fd5e60018b600060405161010001526040518363ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180838152602001828152602001925050506101006040518083038186803b15156106aa57600080fd5b6102c65a03f415156106bb57600080fd5b5050506040518051906020018051906020018051906020018051906020018051906020018051906020018051906020018051905097509750975097509750975097509750919395975091939597565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561076557600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141515156107a157600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156108ba57600080fd5b8073ffffffffffffffffffffffffffffffffffffffff16ff00a165627a7a723058205a17c0783b1004c3f299fd934e662d8a364a02e79acd5badbe212f79fd5fa8ea0029",
+  "deployedBytecode": "0x60606040526004361061008e576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806302d05d3f1461009357806335628b38146100e857806371be2e4a1461019357806383197ef0146101bc5780638da5cb5b146101d1578063e1ba30a914610226578063f2fde38b1461035a578063f5074f4114610393575b600080fd5b341561009e57600080fd5b6100a66103cc565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34156100f357600080fd5b61017d6004808035600019169060200190919080357effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19169060200190919080357effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff191690602001909190803560001916906020019091908035600019169060200190919050506103f2565b6040518082815260200191505060405180910390f35b341561019e57600080fd5b6101a6610556565b6040518082815260200191505060405180910390f35b34156101c757600080fd5b6101cf610566565b005b34156101dc57600080fd5b6101e46105fb565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561023157600080fd5b6102476004808035906020019091905050610620565b604051808981526020018873ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018781526020018660001916600019168152602001857effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19168152602001847effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19168152602001836000191660001916815260200182600019166000191681526020019850505050505050505060405180910390f35b341561036557600080fd5b610391600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190505061070a565b005b341561039e57600080fd5b6103ca600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190505061085f565b005b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600073__EventStoreLib_________________________633bb64203600188888888886000604051602001526040518763ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808781526020018660001916600019168152602001857effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19168152602001847effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff1916815260200183600019166000191681526020018260001916600019168152602001965050505050505060206040518083038186803b151561053057600080fd5b6102c65a03f4151561054157600080fd5b50505060405180519050905095945050505050565b6000600160000180549050905090565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156105c157600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60008060008060008060008073__EventStoreLib_________________________63a057fd5e60018b600060405161010001526040518363ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180838152602001828152602001925050506101006040518083038186803b15156106aa57600080fd5b6102c65a03f415156106bb57600080fd5b5050506040518051906020018051906020018051906020018051906020018051906020018051906020018051906020018051905097509750975097509750975097509750919395975091939597565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561076557600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141515156107a157600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156108ba57600080fd5b8073ffffffffffffffffffffffffffffffffffffffff16ff00a165627a7a723058205a17c0783b1004c3f299fd934e662d8a364a02e79acd5badbe212f79fd5fa8ea0029",
+  "sourceMap": "123:346:1:-;;;506:10:5;498:5;;:18;;;;;;;;;;;;;;;;;;398:9:7;388:7;;:19;;;;;;;;;;;;;;;;;;123:346:1;;;;;;",
+  "deployedSourceMap": "123:346:1:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;212:8;;;228:22:7;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;431:353;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1050:86;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;363:66:3;;;;;;;;;;;;;;237:20:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;789:235:7;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;829:169:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;433:96:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;228:22:7;;;;;;;;;;;;;:::o;431:353::-;577:4;658:13;:24;690:5;703:10;721:8;737:10;755:4;767:6;658:121;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;651:128;;431:353;;;;;;;:::o;1050:86::-;1093:4;1112:5;:12;;:19;;;;1105:26;;1050:86;:::o;363:66:3:-;650:5:5;;;;;;;;;;;636:19;;:10;:19;;;628:28;;;;;;;;418:5:3;;;;;;;;;;;405:19;;;237:20:5;;;;;;;;;;;;;:::o;789:235:7:-;855:4;867:7;882:4;894:7;909:6;923;937:7;952;979:13;:23;1003:5;1010:8;979:40;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;972:47;;;;;;;;;;;;;;;;789:235;;;;;;;;;:::o;829:169:5:-;650:5;;;;;;;;;;;636:19;;:10;:19;;;628:28;;;;;;;;925:1;905:22;;:8;:22;;;;897:31;;;;;;;;962:8;934:37;;955:5;;;;;;;;;;;934:37;;;;;;;;;;;;985:8;977:5;;:16;;;;;;;;;;;;;;;;;;829:169;:::o;433:96:3:-;650:5:5;;;;;;;;;;;636:19;;:10;:19;;;628:28;;;;;;;;513:10:3;500:24;;",
+  "source": "pragma solidity ^0.4.11;\n\nimport \"../node_modules/transmute-framework/contracts/TransmuteFramework/UnsafeEventStore.sol\";\n\ncontract RideManager is UnsafeEventStore {\n\n  // FALLBACK\n  function () public payable { revert(); }\n  \n  // CONSTRUCTOR  \n  function RideManager() public payable {}\n\n  event EsEvent(\n    uint Id,\n    address TxOrigin,\n    uint Created,\n\n    bytes32 EventType,\n\n    bytes1 KeyType,\n    bytes1 ValueType,\n\n    bytes32 Key,\n    bytes32 Value\n  );\n}",
+  "sourcePath": "/usr/src/app/contracts/RideManager.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/usr/src/app/contracts/RideManager.sol",
+      "exportedSymbols": {
+        "RideManager": [
+          91
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.4",
+            ".11"
+          ]
+        },
+        "id": 58,
+        "name": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 1023,
+          "absolutePath": "/usr/src/app/node_modules/transmute-framework/contracts/TransmuteFramework/UnsafeEventStore.sol",
+          "file": "../node_modules/transmute-framework/contracts/TransmuteFramework/UnsafeEventStore.sol",
+          "scope": 92,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 59,
+        "name": "ImportDirective",
+        "src": "26:95:1"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            287,
+            533,
+            1022
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            91,
+            1022,
+            287,
+            533
+          ],
+          "name": "RideManager",
+          "scope": 92
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": [
+                null
+              ]
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "UnsafeEventStore",
+                  "referencedDeclaration": 1022,
+                  "type": "contract UnsafeEventStore"
+                },
+                "id": 60,
+                "name": "UserDefinedTypeName",
+                "src": "147:16:1"
+              }
+            ],
+            "id": 61,
+            "name": "InheritanceSpecifier",
+            "src": "147:16:1"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "payable": true,
+              "scope": 91,
+              "stateMutability": "payable",
+              "superFunction": 930,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 62,
+                "name": "ParameterList",
+                "src": "192:2:1"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 63,
+                "name": "ParameterList",
+                "src": "210:0:1"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            null
+                          ],
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                null
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1038,
+                              "type": "function () pure",
+                              "value": "revert"
+                            },
+                            "id": 64,
+                            "name": "Identifier",
+                            "src": "212:6:1"
+                          }
+                        ],
+                        "id": 65,
+                        "name": "FunctionCall",
+                        "src": "212:8:1"
+                      }
+                    ],
+                    "id": 66,
+                    "name": "ExpressionStatement",
+                    "src": "212:8:1"
+                  }
+                ],
+                "id": 67,
+                "name": "Block",
+                "src": "210:13:1"
+              }
+            ],
+            "id": 68,
+            "name": "FunctionDefinition",
+            "src": "183:40:1"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": true,
+              "modifiers": [
+                null
+              ],
+              "name": "RideManager",
+              "payable": true,
+              "scope": 91,
+              "stateMutability": "payable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 69,
+                "name": "ParameterList",
+                "src": "268:2:1"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 70,
+                "name": "ParameterList",
+                "src": "286:0:1"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 71,
+                "name": "Block",
+                "src": "286:2:1"
+              }
+            ],
+            "id": 72,
+            "name": "FunctionDefinition",
+            "src": "248:40:1"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "EsEvent"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "Id",
+                      "scope": 90,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 73,
+                        "name": "ElementaryTypeName",
+                        "src": "311:4:1"
+                      }
+                    ],
+                    "id": 74,
+                    "name": "VariableDeclaration",
+                    "src": "311:7:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "TxOrigin",
+                      "scope": 90,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 75,
+                        "name": "ElementaryTypeName",
+                        "src": "324:7:1"
+                      }
+                    ],
+                    "id": 76,
+                    "name": "VariableDeclaration",
+                    "src": "324:16:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "Created",
+                      "scope": 90,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 77,
+                        "name": "ElementaryTypeName",
+                        "src": "346:4:1"
+                      }
+                    ],
+                    "id": 78,
+                    "name": "VariableDeclaration",
+                    "src": "346:12:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "EventType",
+                      "scope": 90,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 79,
+                        "name": "ElementaryTypeName",
+                        "src": "365:7:1"
+                      }
+                    ],
+                    "id": 80,
+                    "name": "VariableDeclaration",
+                    "src": "365:17:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "KeyType",
+                      "scope": 90,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes1",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes1",
+                          "type": "bytes1"
+                        },
+                        "id": 81,
+                        "name": "ElementaryTypeName",
+                        "src": "389:6:1"
+                      }
+                    ],
+                    "id": 82,
+                    "name": "VariableDeclaration",
+                    "src": "389:14:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "ValueType",
+                      "scope": 90,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes1",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes1",
+                          "type": "bytes1"
+                        },
+                        "id": 83,
+                        "name": "ElementaryTypeName",
+                        "src": "409:6:1"
+                      }
+                    ],
+                    "id": 84,
+                    "name": "VariableDeclaration",
+                    "src": "409:16:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "Key",
+                      "scope": 90,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 85,
+                        "name": "ElementaryTypeName",
+                        "src": "432:7:1"
+                      }
+                    ],
+                    "id": 86,
+                    "name": "VariableDeclaration",
+                    "src": "432:11:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "Value",
+                      "scope": 90,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 87,
+                        "name": "ElementaryTypeName",
+                        "src": "449:7:1"
+                      }
+                    ],
+                    "id": 88,
+                    "name": "VariableDeclaration",
+                    "src": "449:13:1"
+                  }
+                ],
+                "id": 89,
+                "name": "ParameterList",
+                "src": "305:161:1"
+              }
+            ],
+            "id": 90,
+            "name": "EventDefinition",
+            "src": "292:175:1"
+          }
+        ],
+        "id": 91,
+        "name": "ContractDefinition",
+        "src": "123:346:1"
+      }
+    ],
+    "id": 92,
+    "name": "SourceUnit",
+    "src": "0:469:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
+  },
+  "networks": {
+    "1513544858655": {
+      "events": {
+        "0x34fda208d95da3b89ce2ca6e488201282198f339ef139dd80138a430c8d03a24": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "Id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "TxOrigin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "Created",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "EventType",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "KeyType",
+              "type": "bytes1"
+            },
+            {
+              "indexed": false,
+              "name": "ValueType",
+              "type": "bytes1"
+            },
+            {
+              "indexed": false,
+              "name": "Key",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "Value",
+              "type": "bytes32"
+            }
+          ],
+          "name": "EsEvent",
+          "type": "event"
+        }
+      },
+      "links": {
+        "EventStoreLib": "0x4449ca6bfb470ae44c34172249f05a81eba58399"
+      },
+      "address": "0xb1fbbc30fa85c5b958e0f45a1103b1e65a492eda"
+    },
+    "1513661969492": {
+      "events": {
+        "0x34fda208d95da3b89ce2ca6e488201282198f339ef139dd80138a430c8d03a24": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "Id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "TxOrigin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "Created",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "EventType",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "KeyType",
+              "type": "bytes1"
+            },
+            {
+              "indexed": false,
+              "name": "ValueType",
+              "type": "bytes1"
+            },
+            {
+              "indexed": false,
+              "name": "Key",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "Value",
+              "type": "bytes32"
+            }
+          ],
+          "name": "EsEvent",
+          "type": "event"
+        }
+      },
+      "links": {
+        "EventStoreLib": "0xcf569c1a3122035c72e176993baf2db719ad598f"
+      },
+      "address": "0x2b29deb9aa3eaf8583b63c459d113efe4577d15d"
+    }
+  },
+  "schemaVersion": "1.0.1",
+  "updatedAt": "2017-12-19T05:39:39.892Z"
+}

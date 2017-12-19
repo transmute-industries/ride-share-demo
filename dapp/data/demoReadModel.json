@@ -1,0 +1,56 @@
+{
+  "readModelStoreKey": "RideManager:0x71adbb16c5b43258e873ab51abedda760c4071e5",
+  "readModelType": "RideManager",
+  "contractAddress": "0x71adbb16c5b43258e873ab51abedda760c4071e5",
+  "lastEvent": 8,
+  "model": {
+    "566947f7-d9bb-457e-a11e-453f6fe7ecf4": {
+      "ride_fare": "$19.64",
+      "passenger_phone": "978-809-0334",
+      "from": "23 Meadow Valley Way",
+      "to": "881 Hayes Trail",
+      "ride_state": "IN_PROGRESS",
+      "driver_phone": "531-295-8682",
+      "vehicle": {
+        "make": "Mercury",
+        "year": "1993",
+        "model": "Sable"
+      }
+    },
+    "f7cf51bb-c2c0-4d08-861a-69155225d74c": {
+      "ride_fare": "$26.32",
+      "passenger_phone": "838-224-4382",
+      "from": "9 Michigan Terrace",
+      "to": "6 Lakewood Way",
+      "ride_state": "COMPLETE",
+      "driver_phone": "670-147-7825",
+      "vehicle": {
+        "make": "Ford",
+        "year": "2000",
+        "model": "Econoline E150"
+      },
+      "driver_rating": 3
+    },
+    "2224a6d4-fada-4b24-af33-c835932079d4": {
+      "ride_fare": "$46.12",
+      "passenger_phone": "993-752-8157",
+      "from": "8426 Kinsman Circle",
+      "to": "67 Lotheville Trail",
+      "ride_state": "COMPLETE",
+      "driver_phone": "120-691-2997",
+      "vehicle": {
+        "make": "Honda",
+        "year": "1983",
+        "model": "Accord"
+      },
+      "driver_rating": 4
+    },
+    "09a1fa05-d12d-4a4e-aa40-310411911e9d": {
+      "ride_fare": "$41.30",
+      "passenger_phone": "981-839-1802",
+      "from": "2759 Miller Pass",
+      "to": "3 Golf Park",
+      "ride_state": "PENDING"
+    }
+  }
+}
