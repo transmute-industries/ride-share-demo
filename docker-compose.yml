@@ -28,6 +28,8 @@ services:
       - "3001:3001"
     links:
       - db
+    volumes:
+     - ./dapp:/dapp
     environment:
       - PGHOST=db
       - PGDATABASE=postgres

@@ -19,7 +19,7 @@
 // contract("works with framework", accounts => {
 //   let T;
 //   let factory;
-//   let packageManger;
+//   let rideShareManager;
 
 //   before(async () => {
 //     T = TransmuteFramework.init({
@@ -44,7 +44,7 @@
 
 //   it("factory can create an package manager", async () => {
 //     let { events, tx } = await T.Factory.createEventStore(factory, accounts[0]);
-//     packageManger = await RideManager.at(events[0].payload.address);
+//     rideShareManager = await RideManager.at(events[0].payload.address);
 //   });
 
 //   it("package manager can publish all packages in a directory", async () => {
@@ -52,7 +52,7 @@
 //       getDirectories("./packages").map(async packageDir => {
 //         let fsaEvent = await demoUtils.publish(
 //           T,
-//           packageManger,
+//           rideShareManager,
 //           accounts[0],
 //           packageDir
 //         );
@@ -63,6 +63,6 @@
 //   });
 
 //   it("library can list all published packages", async () => {
-//     await demoUtils.list(T, packageManger, accounts[0]);
+//     await demoUtils.list(T, rideShareManager, accounts[0]);
 //   });
 // });

@@ -20,7 +20,7 @@ const getDirectories = source =>
 contract("works with framework", accounts => {
   let T;
   let factory;
-  let packageManger;
+  let rideShareManager;
 
   before(async () => {
     T = TransmuteFramework.init({
@@ -45,20 +45,20 @@ contract("works with framework", accounts => {
 
   it("factory can create an package manager", async () => {
     let { events, tx } = await T.Factory.createEventStore(factory, accounts[0]);
-    packageManger = await RideManager.at(events[0].payload.address);
+    rideShareManager = await RideManager.at(events[0].payload.address);
   });
 
   it("package manager can publish a directory as a package", async () => {
-    let fsaEvent = await demoUtils.publish(T, packageManger, accounts[0], process.cwd());
+    let fsaEvent = await demoUtils.publish(T, rideShareManager, accounts[0], process.cwd());
     expect(fsaEvent.type).to.equal("PACKAGE_PUBLISHED");
     return fsaEvent;
   });
 
   it("library can list all published packages", async () => {
-    let readModel = await demoUtils.list(T, packageManger, accounts[0]);
+    let readModel = await demoUtils.list(T, rideShareManager, accounts[0]);
   });
 
   it("library can install packages from package manager", async () => {
-    await demoUtils.install(T, packageManger, accounts[0], './test/data');
+    await demoUtils.install(T, rideShareManager, accounts[0], './test/data');
   });
 });

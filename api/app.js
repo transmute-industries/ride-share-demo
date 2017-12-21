@@ -9,10 +9,36 @@ app.use(bodyParser.json());
 const { Client } = require("pg");
 const client = new Client();
 
+const com = require("./dapp/lib/common");
+
 app.get("/", (req, res) => {
   res.json({
     reset: "http://localhost:3001/reset",
     list: "http://localhost:3001/read_models"
+  });
+});
+
+app.get("/demo", async (req, res) => {
+  const T = require("./transmute");
+  const rideManagerReadModel = require("./dapp/src/RideManager.ReadModel.json");
+
+  const accounts = await T.getAccounts();
+
+  const eventStore = await T.EventStoreContract.at(
+    rideManagerReadModel.contractAddress
+  );
+  const readModel = await com.getRideManagerReadModel(
+    T,
+    eventStore,
+    accounts[0]
+  );
+
+  const allEvents = await T.EventStore.readFSAs(eventStore, accounts[0], 0);
+
+  res.json({
+    accounts,
+    readModel,
+    allEvents
   });
 });
 

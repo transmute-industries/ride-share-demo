@@ -37,12 +37,12 @@ vorpal
         factory,
         accounts[0]
       );
-      let packageManger = await T.EventStoreContract.at(
+      let rideShareManager = await T.EventStoreContract.at(
         events[0].payload.address
       );
       let readModel = await demoUtils.com.getRideManagerReadModel(
         T,
-        packageManger,
+        rideShareManager,
         accounts[0]
       );
       await writeFile(
