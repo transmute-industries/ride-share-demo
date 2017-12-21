@@ -10,6 +10,8 @@ An Insomnia workspace is included to make testing the api easy.
 * [Install Insomnia](https://insomnia.rest/)
 
 ```
+git clone https://github.com/transmute-industries/ride-share-demo.git
+cd ride-share-demo
 docker-compose up --build
 ```
 
