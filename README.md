@@ -4,6 +4,8 @@ A demo dapp with transmute, react, express, ipfs, postgres and testrpc.
 
 An Insomnia workspace is included to make testing the api easy.
 
+__Be sure to disable Metamask before running this demo__
+
 ## Getting Started With Docker
 
 * [Install Docker](https://docs.docker.com/engine/installation/)

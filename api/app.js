@@ -18,34 +18,10 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/demo", async (req, res) => {
-  const T = require("./transmute");
-  const rideManagerReadModel = require("./dapp/src/RideManager.ReadModel.json");
-
-  const accounts = await T.getAccounts();
-
-  const eventStore = await T.EventStoreContract.at(
-    rideManagerReadModel.contractAddress
-  );
-  const readModel = await com.getRideManagerReadModel(
-    T,
-    eventStore,
-    accounts[0]
-  );
-
-  const allEvents = await T.EventStore.readFSAs(eventStore, accounts[0], 0);
-
-  res.json({
-    accounts,
-    readModel,
-    allEvents
-  });
-});
-
 app.get("/reset", async (req, res, next) => {
-  await client.query(`
-  DROP TABLE read_models;
-`);
+    await client.query(`
+    DROP TABLE IF EXISTS read_models;
+  `);
 
   await client.query(`
   CREATE TABLE read_models(
@@ -92,4 +68,33 @@ app.get("/read_models/:address", async (req, res, next) => {
 app.listen(3001, async () => {
   await client.connect();
   console.log("Example app listening on port 3001!");
+
+  await client.query(`
+    CREATE TABLE IF NOT EXISTS read_models(
+      ADDRESS CHAR(42) PRIMARY KEY NOT NULL,
+      TYPE TEXT NOT NULL,
+      DATA JSONB NOT NULL
+  );`);
+
+  const T = require("./transmute");
+  const rideManagerReadModel = require("./dapp/src/RideManager.ReadModel.json");
+
+  const accounts = await T.getAccounts();
+
+  const eventStore = await T.EventStoreContract.at(
+    rideManagerReadModel.contractAddress
+  );
+  const readModel = await com.getRideManagerReadModel(
+    T,
+    eventStore,
+    accounts[0]
+  );
+
+  let modelAsString = JSON.stringify(readModel);
+  await client.query(`
+    INSERT INTO read_models (ADDRESS,TYPE,DATA)
+    VALUES ('${rideManagerReadModel.contractAddress}', '${rideManagerReadModel.readModelType}', '${modelAsString}')
+    ON CONFLICT (ADDRESS) DO UPDATE
+    SET DATA = '${modelAsString}';
+  `);
 });
